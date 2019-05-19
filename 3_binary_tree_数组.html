@@ -18,11 +18,13 @@
       this.nodeArr = []
     }
     insert(data) {
-      let node = new Node(data)
-      if (this.rootEle == null) {
-        this.rootEle = node
-      } else {
-        this.insertNode(this.rootEle, node)
+      for (const key in nodeArr) {
+        if (object.hasOwnProperty(key)) {
+          const element = nodeArr[key];
+          if(element<data){
+            
+          }
+        }
       }
     }
   }

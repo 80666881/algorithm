@@ -11,6 +11,43 @@
 <script>
     /*
     二叉树遍历
+    树的遍历方式有三种：前序遍历，中序遍历和后序遍历
+
+    1.前序遍历是指，对于树中的任意节点来说，先打印这个节点，然后再打印它的左子树，最后打印它的右子树。
+    2.中序遍历是指，对于树中的任意节点来说，先打印它的左子树，然后再打印它本身，最后打印它的右子树。
+    3.后序遍历是指，对于树中的任意节点来说，先打印它的左子树，然后再打印它的右子树，最后打印这个节点本身。
     */
+
+    //前序遍历
+    function preOrderSearch(node){
+        if(node==null) return;
+        console.log(node.data)
+        preOrderSearch(node.left);
+        preOrderSearch(node.right)
+    }
+
+    //中序遍历
+    function inOrderSearch(node){
+        if(node==null) return
+        inOrderSearch(node.left)
+        console.log(node.left.data)
+        inOrderSearch(node.right)
+    }
+
+    //后序遍历
+    function postOrderSearch(node){
+        if(node==null) return
+        postOrderSearch(node.left)
+        postOrderSearch(node.right)
+        console.log(node.data)
+    }
+
+
+    // function a(i){
+    //     if(i<=0)return
+    //     a(--i)
+    //     console.log('i',i)
+    // }
+    // a(4)
 </script>
 </html>
