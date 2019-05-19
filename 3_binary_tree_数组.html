@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  /*
+  基于数组创建二叉树
+  */
+  class BinaryTree {
+    constructor() {
+      this.nodeArr = []
+    }
+    insert(data) {
+      let node = new Node(data)
+      if (this.rootEle == null) {
+        this.rootEle = node
+      } else {
+        this.insertNode(this.rootEle, node)
+      }
+    }
+  }
+
+
+
+  let t = new BinaryTree()
+  t.insert(29)
+  t.insert(33)
+  t.insert(12)
+  t.insert(28)
+  t.insert(66)
+  t.insert(49)
+  t.insert(32)
+  console.log(t)
+
+
+
+</script>
+
+</html>
