@@ -68,10 +68,16 @@
 
 
         class BinarySearch {
-            constructor(tree, data) {
-                if (!tree.rootEle) return
-                return this.search(tree.rootEle, data)
+            constructor(tree) {
+                this.rootEle = tree.rootEle
             }
+
+            searchNode(data){
+                if (!this.rootEle) return
+                return this.search(this.rootEle, data)
+            }
+            
+            //查找
             search(node, data) {
                 if (node == null) {
                     return
@@ -84,10 +90,17 @@
                     return this.search(node.left, data)
                 }
             }
+
+            //添加
+            add(data){
+                // while()
+            }
         }
 
-        let node = new BinarySearch(t, 33)
-        console.log('node', node)
+        let searchT = new BinarySearch(t)
+        // console.log('searchT',searchT)
+        let result = searchT.searchNode(33)
+        console.log('node', result)
     </script>
 </body>
 
