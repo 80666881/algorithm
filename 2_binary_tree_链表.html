@@ -11,7 +11,7 @@
 </body>
 <script>
   /*
-  基于链表创建二叉树
+  基于链表创建二叉搜索树
   */
   class BinaryTree {
     constructor() {
@@ -26,18 +26,17 @@
       }
     }
     insertNode(parentNode, node) {
-
       if (parentNode.data < node.data) {
-        if (parentNode.left == null) {
-          parentNode.left = node
-        } else {
-          this.insertNode(parentNode.left, node)
-        }
-      } else {
         if (parentNode.right == null) {
           parentNode.right = node
         } else {
           this.insertNode(parentNode.right, node)
+        }
+      } else {
+        if (parentNode.left == null) {
+          parentNode.left = node
+        } else {
+          this.insertNode(parentNode.left, node)
         }
       }
     }
