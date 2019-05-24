@@ -10,10 +10,20 @@
 
 <body>
     <script>
+
         /*
-     基于链表创建二叉搜索树
-     */
-        class BinaryTree {
+        二叉查找树:
+        二叉查找树要求，在树中的任意一个节点，其左子树中的每个节点的值，都要小于这个节点的值，而右子树节点的值都大于这个节点的值。
+        */
+
+        class Node {
+            constructor(data) {
+                this.data = data
+                this.left = null
+                this.right = null
+            }
+        }
+        class BinarySearch {
             constructor() {
                 this.rootEle = null
             }
@@ -40,43 +50,10 @@
                     }
                 }
             }
-        }
-        class Node {
-            constructor(data) {
-                this.data = data
-                this.left = null
-                this.right = null
-            }
-        }
-
-
-        let t = new BinaryTree()
-        t.insert(29)
-        t.insert(33)
-        t.insert(12)
-        t.insert(28)
-        t.insert(66)
-        t.insert(49)
-        t.insert(32)
-
-
-
-        /*
-        二叉查找树:
-        二叉查找树要求，在树中的任意一个节点，其左子树中的每个节点的值，都要小于这个节点的值，而右子树节点的值都大于这个节点的值。
-        */
-
-
-        class BinarySearch {
-            constructor(tree) {
-                this.rootEle = tree.rootEle
-            }
-
-            searchNode(data){
+            searchNode(data) {
                 if (!this.rootEle) return
                 return this.search(this.rootEle, data)
             }
-            
             //查找
             search(node, data) {
                 if (node == null) {
@@ -85,22 +62,84 @@
                 if (node.data === data) {
                     return node
                 } else if (node.data < data) {
-                    return this.search(node.right,data)
+                    return this.search(node.right, data)
                 } else {
                     return this.search(node.left, data)
                 }
             }
 
-            //添加
-            add(data){
-                // while()
-            }
-        }
+            // delete(data) {
+            //     if (this.rootEle == null) return
+            //     let node = this.searchNode(data)
+            //     this.deleteNode(node)
+            // }
+            deleteNode(node) {
+                if (node.left && !node.right) {
+                    //只有左子节点
+                    node = node.left
 
-        let searchT = new BinarySearch(t)
-        // console.log('searchT',searchT)
-        let result = searchT.searchNode(33)
-        console.log('node', result)
+                } else if (node.right && !node.left) {
+                    //只有右子节点
+                    node = node.right
+
+                } else if (node.left && node.right) {
+                    //左右子节点都有
+                    let minimunNode = this.getMinimumNode(node)
+                    node = minimunNode
+                } else if (!node.left && !node.right) {
+                    //叶子节点
+                    node == null
+                }
+            }
+
+            delete(data) {
+                let p = this.rootEle; // p 指向要删除的节点，初始化指向根节点
+                let pp = null; // pp 记录的是 p 的父节点
+                while (p != null && p.data != data) {
+                    pp = p;
+                    if (data > p.data) p = p.right;
+                    else p = p.left;
+                }
+                if (p == null) return; // 没有找到
+
+                // 要删除的节点有两个子节点
+                if (p.left != null && p.right != null) { // 查找右子树中最小节点
+                    let minP = p.right;
+                    let minPP = p; // minPP 表示 minP 的父节点
+                    while (minP.left != null) {
+                        minPP = minP;
+                        minP = minP.left;
+                    }
+                    p.data = minP.data; // 将 minP 的数据替换到 p 中
+                    p = minP; // 下面就变成了删除 minP 了
+                    pp = minPP;
+                }
+
+                // 删除节点是叶子节点或者仅有一个子节点
+                let child; // p 的子节点
+                if (p.left != null) child = p.left;
+                else if (p.right != null) child = p.right;
+                else child = null;
+
+                if (pp == null) this.rootEle = child; // 删除的是根节点
+                else if (pp.left == p) pp.left = child;
+                else pp.right = child;
+            }
+
+        }
+        let t = new BinarySearch()
+        t.insert(29)
+        t.insert(33)
+        t.insert(12)
+        t.insert(28)
+        t.insert(66)
+        t.insert(49)
+        t.insert(32)
+
+        console.log('searchT', t)
+        // let result = t.searchNode(33)
+        t.delete(33)
+        console.log('node', t)
     </script>
 </body>
 
